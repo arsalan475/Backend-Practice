@@ -6,7 +6,7 @@ const express = require("express");
 const app = express();
 
 app.get("/", (req, res) => {
-  res.send(`${process.env.PORT}`);
+  res.send(`Home`);
 });
 
 app.get("/login", (req, res) => {
