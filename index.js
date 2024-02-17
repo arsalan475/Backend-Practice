@@ -12,15 +12,15 @@ app.set("view engine", "ejs");
 app.set("views", path.join(__dirname, "/views"));
 
 app.get("/", (req, res) => {
-  res.render("Home");
+  res.render("Home", { path: req.path });
 });
 
 app.get("/login", (req, res) => {
-  res.render("Login");
+  res.render("Login", { path: req.path });
 });
 
 app.get("/port", (req, res) => {
-  res.render("Port", { port: process.env.PORT });
+  res.render("Port", { port: process.env.PORT, path: req.path });
 });
 
 app.listen(process.env.PORT, () => {
