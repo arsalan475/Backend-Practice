@@ -1,6 +1,5 @@
 const env = require("dotenv");
 env.config();
-console.log(process.env.PORT);
 
 const express = require("express");
 
@@ -12,6 +11,10 @@ app.get("/", (req, res) => {
 
 app.get("/login", (req, res) => {
   res.send("<h1>Login</h1>");
+});
+
+app.get("/port", (req, res) => {
+  res.send(`${process.env.PORT}`);
 });
 
 app.listen(process.env.PORT, () => {
