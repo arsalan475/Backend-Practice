@@ -1,20 +1,26 @@
+const express = require("express");
+const path = require("path");
+
 const env = require("dotenv");
 env.config();
 
-const express = require("express");
-
 const app = express();
 
+app.use(express.static(path.join(__dirname, "/public")));
+
+app.set("view engine", "ejs");
+app.set("views", path.join(__dirname, "/views"));
+
 app.get("/", (req, res) => {
-  res.send("<h1>Hello World</h1>");
+  res.render("Home");
 });
 
 app.get("/login", (req, res) => {
-  res.send("<h1>Login</h1>");
+  res.render("Login");
 });
 
 app.get("/port", (req, res) => {
-  res.send(`${process.env.PORT}`);
+  res.render("Port", { port: process.env.PORT });
 });
 
 app.listen(process.env.PORT, () => {
