@@ -1,5 +1,4 @@
-const env = require("dotenv");
-env.config();
+require("dotenv").config();
 
 const express = require("express");
 
@@ -10,7 +9,7 @@ app.get("/", (req, res) => {
 });
 
 app.get("/login", (req, res) => {
-  res.send("<h1>Login</h1>");
+  res.send("Login");
 });
 
 app.listen(process.env.PORT, () => {
