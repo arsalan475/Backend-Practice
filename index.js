@@ -1,26 +1,28 @@
 const express = require("express");
-const path = require("path");
 
 const env = require("dotenv");
-env.config();
 
 const app = express();
 
-app.use(express.static(path.join(__dirname, "/public")));
+var cors = require("cors");
 
-app.set("view engine", "ejs");
-app.set("views", path.join(__dirname, "/views"));
+env.config();
 
-app.get("/", (req, res) => {
-  res.render("Home", { path: req.path });
+app.use(cors());
+
+let arr = [];
+
+app.get("/api/v1/users", function (req, res) {
+  res.send(arr);
 });
 
-app.get("/login", (req, res) => {
-  res.render("Login", { path: req.path });
-});
+app.post("/api/v1/users", function (req, res) {
+  arr.push({
+    title: req.body.title,
+    id: Math.now(),
+  });
 
-app.get("/port", (req, res) => {
-  res.render("Port", { port: process.env.PORT, path: req.path });
+  res.send("document added");
 });
 
 app.listen(process.env.PORT, () => {
